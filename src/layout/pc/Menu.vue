@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import { HomeFilled, Setting } from '@element-plus/icons-vue';
-import { computed, ref, watch } from 'vue';
+import { computed } from 'vue';
 import { useGlobalStore } from '@/stores/modules/global';
 import { storeToRefs } from 'pinia';
 const store = useGlobalStore();

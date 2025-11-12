@@ -2,6 +2,10 @@
   <div>About</div>
 </template>
 
-<script></script>
+<script setup>
+import { request } from '@/api/index';
+
+request.post('/api/user');
+</script>
 
 <style></style>

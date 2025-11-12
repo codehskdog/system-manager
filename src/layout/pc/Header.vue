@@ -6,6 +6,7 @@
         @click="changeMenuCollapsed"
       />
     </el-icon>
+    <User />
   </div>
 </template>
 
@@ -13,6 +14,7 @@
 import { useGlobalStore } from '@/stores/modules/global';
 import { Expand, Fold } from '@element-plus/icons-vue';
 import { storeToRefs } from 'pinia';
+import User from './components/User.vue';
 
 const globalStore = useGlobalStore();
 const { changeMenuCollapsed } = globalStore;
@@ -24,6 +26,7 @@ const { menuCollapsed } = storeToRefs(globalStore);
   display: flex;
   align-items: center;
   box-sizing: border-box;
+  justify-content: space-between;
   padding: 0 10px;
   width: 100%;
   height: 100%;
