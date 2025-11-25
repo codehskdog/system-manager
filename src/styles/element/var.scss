@@ -33,4 +33,11 @@ $menu-bg-color: #356100;
 
 :root {
   --el-aside-width: auto;
+  // com-table的 配置
+  // 每个工具宽度
+  --com-table-tool-width: 25px;
+  // 每个工具icon大小
+  --com-table-tool-icon-size: 14px;
+  // 每个工具item之间的间距
+  --com-table-tool-item-gap:10px;
 }

@@ -1,5 +1,5 @@
 import { request } from '@/api';
-import type { ResultData } from '@/api/type';
+import type { ResultData, ResultList } from '@/types/api';
 
 interface loginData {
   username: string;
@@ -15,3 +15,4 @@ export const login = (data: loginData) =>
   request.post<ResultData<LoginResponse>>('/user/login', {
     data,
   });
+

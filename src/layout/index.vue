@@ -1,7 +1,5 @@
 <template>
-  <el-config-provider>
-    <PCLayout />
-  </el-config-provider>
+  <PCLayout />
 </template>
 
 <script setup lang="ts">

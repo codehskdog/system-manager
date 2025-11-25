@@ -7,7 +7,7 @@ import {
 } from '@/utils/serviceLoading';
 
 export const request = extend({
-  timeout: 3000,
+  timeout: 20000,
   errorHandler: (error) => {
     tryHideFullScreenLoading();
     ElNotification.error({
@@ -42,7 +42,7 @@ request.interceptors.request.use((url, options) => {
     throw new Error('请先登录');
   }
   return {
-    url,
+    url: _url,
     options,
   };
 });
@@ -53,6 +53,10 @@ request.interceptors.response.use(async (response) => {
     throw new Error('请求失败');
   }
   const data = await response.clone().json();
-  console.log(data);
-  return response;
+  if (data.code >= 400) {
+    return Promise.reject(data);
+  }
+  data.success = true;
+  return new Response(JSON.stringify(data), response);
+
 });

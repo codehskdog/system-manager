@@ -27,6 +27,7 @@
               <el-input
                 v-model="loginForm.username"
                 placeholder="用户名"
+                @keyup.enter="handleLogin"
                 prefix-icon="el-icon-user"
                 :class="{ 'input-focus': isUsernameFocused }"
                 @focus="isUsernameFocused = true"
@@ -38,6 +39,7 @@
               <el-input
                 v-model="loginForm.password"
                 placeholder="密码"
+                @keyup.enter="handleLogin"
                 prefix-icon="el-icon-lock"
                 show-password
                 :class="{ 'input-focus': isPasswordFocused }"
@@ -82,15 +84,15 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
-import { useRouter } from 'vue-router';
-import { ElMessage } from 'element-plus';
-import { login } from '@/api/interfaces/login';
+import { ref, reactive } from "vue";
+import { useRouter } from "vue-router";
+import { ElMessage } from "element-plus";
+import { login } from "@/api/interfaces/login";
 
 // 路由实例
 const router = useRouter();
-if (localStorage.getItem('token')) {
-  router.push('/');
+if (localStorage.getItem("token")) {
+  router.push("/");
 }
 
 // 表单引用
@@ -103,21 +105,21 @@ const isPasswordFocused = ref(false);
 
 // 登录表单数据
 const loginForm = ref({
-  username: '',
-  password: '',
+  username: "",
+  password: "",
 });
 
 // 表单校验规则
 const loginRules = {
   username: [
-    { required: true, message: '请输入用户名', trigger: 'blur' },
-    { min: 3, message: '用户名长度至少为6位', trigger: 'blur' },
-    { max: 12, message: '用户名长度至多为16位', trigger: 'blur' },
+    { required: true, message: "请输入用户名", trigger: "blur" },
+    { min: 3, message: "用户名长度至少为6位", trigger: "blur" },
+    { max: 12, message: "用户名长度至多为16位", trigger: "blur" },
   ],
   password: [
-    { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 6, message: '密码长度至少为6位', trigger: 'blur' },
-    { max: 16, message: '密码长度至多为16位', trigger: 'blur' },
+    { required: true, message: "请输入密码", trigger: "blur" },
+    { min: 6, message: "密码长度至少为6位", trigger: "blur" },
+    { max: 16, message: "密码长度至多为16位", trigger: "blur" },
   ],
 };
 
@@ -132,11 +134,11 @@ const handleLogin = async () => {
 
       // 模拟API请求延迟
       const res = await login(loginForm.value);
-      localStorage.setItem('token', res.data.token);
-      router.push('/');
+      localStorage.setItem("token", res.data.token);
+      router.push("/");
     } catch (error) {
-      ElMessage.error('登录失败，请检查账号密码');
-      console.error('登录错误:', error);
+      ElMessage.error("登录失败，请检查账号密码");
+      console.error("登录错误:", error);
     } finally {
       isLoading.value = false;
     }
